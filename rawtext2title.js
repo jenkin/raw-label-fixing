@@ -9,7 +9,7 @@ for (var k in texts) {
   // Current text node
   var text = texts[k];
   // If text is a node
-  if (text.getAttribute) {
+  if (typeof text.getAttribute === "function") {
     // Text transform attribute
     var transform = text.getAttribute("transform");
     // Text and circle are linked by the same transform attribute!
