@@ -2,27 +2,30 @@
  * In Chromium console from SVG file tab.
  */
 
-// Text nodes 
-var texts = document.getElementsByTagName("text");
+// Text and circles nodes 
+var texts = document.getElementsByTagName("text"),
+    circles = document.getElementsByTagName("circle"),
+    l = texts.length,
+    text, circle, title;
 
-for (var k in texts) {
-  // Current text node
-  var text = texts[k];
-  // If text is a node
-  if (typeof text.getAttribute === "function") {
-    // Text transform attribute
-    var transform = text.getAttribute("transform");
-    // Text and circle are linked by the same transform attribute!
-    var circle = document.querySelectorAll("circle[transform='"+transform+"']")[0];
-    // New title element
-    var title = document.createElement("title");
-    // Copy text content from text to title
-    title.textContent = text.textContent;
-    // Append title node to circle
-    circle.appendChild(title);
-    // Remove old text node
-    text.parentNode.removeChild(text);
-  }
+// Elements and labels have tve the same order
+for (var k=0; k<l; k++) {
+  // Current text and circle nodes
+  text = texts[k];
+  circle = circles[k];
+  // New title element
+  title = document.createElement("title");
+  // Copy text content from text to title
+  title.textContent = text.textContent;
+  // Append title node to circle
+  circle.appendChild(title);
+}
+
+// Delete text nodes
+var last;
+while (l = document.getElementsByTagName("text").length) {
+  last = document.getElementsByTagName("text")[l-1];
+  last.parentNode.removeChild(last);
 }
 
 /*
